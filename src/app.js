@@ -29,6 +29,7 @@ app.use(limiter);
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
+app.get("/", (req, res) => res.json({ message: "server is ok" }));
 // app.use("/api/products", productRoutes);
 
 // Error handling middleware
