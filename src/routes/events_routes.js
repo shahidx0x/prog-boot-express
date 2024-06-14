@@ -4,8 +4,8 @@ const authMiddleware = require("../middleware/auth_middleware");
 
 const router = express.Router();
 
-router.get("/", authMiddleware, eventsController.getAllBootcamps);
-router.get("/:id", authMiddleware, eventsController.getBootcampById);
+router.get("/", eventsController.getAllBootcamps);
+router.get("/:id", eventsController.getBootcampById);
 router.post("/", authMiddleware, eventsController.createBootcamp);
 
 module.exports = router;
