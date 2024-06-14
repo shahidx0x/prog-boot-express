@@ -6,7 +6,7 @@ const rateLimit = require("express-rate-limit");
 const errorMiddleware = require("./middleware/error_middleware");
 const authRoutes = require("./routes/auth_routes");
 const userRoutes = require("./routes/user_routes");
-const productRoutes = require("./routes/product_routes");
+const eventsRoutes = require("./routes/events_routes");
 const winston = require("winston/lib/winston/config");
 
 const app = express();
@@ -29,6 +29,7 @@ app.use(limiter);
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/events", eventsRoutes);
 app.get("/", (req, res) => res.json({ message: "server is ok" }));
 // app.use("/api/products", productRoutes);
 
