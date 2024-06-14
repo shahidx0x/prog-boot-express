@@ -10,13 +10,15 @@ exports.getAllBootcamps = async (req, res) => {
 };
 
 exports.createBootcamp = async (req, res) => {
-  const bootcamp = new Bootcamp(req.body);
-  try {
-    const savedBootcamp = await Events.save();
-    res.status(201).json(savedBootcamp);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
+
+    try {
+      const bootcamp = await Events.create(req.body);
+      if (bootcamp) {
+        return res.status(201).json(bootcamp);
+      }
+    } catch (error) {
+      res.status(400).json({ message: error.message });
+    }
 };
 
 exports.getBootcampById = async (req, res) => {
