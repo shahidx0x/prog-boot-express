@@ -28,6 +28,7 @@ exports.login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
+    const { fullname, _id } = user;
     if (!user) {
       return res.status(401).json({ message: "Invalid email or password" });
     }
@@ -41,7 +42,9 @@ exports.login = async (req, res, next) => {
       expiresIn: "1h",
     });
 
-    res.status(200).json({ token });
+    res
+      .status(200)
+      .json({ token, user: { _id, fullname: fullname || "Jon Doe", email } });
   } catch (err) {
     next(err);
   }
